@@ -1,0 +1,95 @@
+# Archivos generados por el sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de IDE/Editores
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Dependencias de Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos de construcción y dependencias
+dist/
+build/
+www/
+.cache/
+.temp/
+.tmp/
+
+# Archivos de configuración local
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Archivos de package managers
+package-lock.json
+yarn.lock
+
+# Archivos de Capacitor
+android/
+ios/
+
+# Archivos de Gradle (Android)
+.gradle/
+build/
+*/build/
+
+# Archivos generados por Babel
+*.js.map
+*.js
+
+# Archivos de Webpack
+stats.json
+*.hot-update.js
+*.hot-update.json
+
+# Archivos de Workbox
+workbox-*.js
+workbox-*.js.map
+sw.js
+sw.js.map
+
+# Archivos de iOS (Xcode)
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.moved-aside
+DerivedData/
+*.hmap
+*.ipa
+*.xcuserstate
+Pods/
+
+# Archivos de caché
+.sass-cache/
+
+# Archivos de logs
+logs/
+*.log
+
+# Archivos de test
+coverage/
+.nyc_output/
+
+# Archivos de editor
+*.swp
+*.swo
+*~
