@@ -1,0 +1,14 @@
+<div class="container mt-5">
+
+    @if (!cursos)
+    {
+        <app-tabla-alumnos></app-tabla-alumnos>
+    }
+    @else
+    {
+        <app-tabla-cursos></app-tabla-cursos>
+    }
+
+    <button class="btn btn-primary" (click)="handleCambio()">Cambiar de tabla</button>
+
+</div>
