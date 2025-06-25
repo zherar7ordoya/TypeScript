@@ -91,3 +91,100 @@ console.log(`el3: ${el3}`); // Alice
 
 ///////////////////// 01:24:45 | 3.1 - Basic Function Types /////////////////////
 
+console.log("Basic Function Types");
+
+function add(x: number, y: number): number | string
+{
+    if (x == 0)
+    {
+        return "Invalid number";
+    }
+    return x + y;
+}
+
+const res1 = add(5, 10);        // 15
+console.log(`res1: ${res1}`);   // 15
+const res2 = add(0, 10);        // "Invalid number"
+console.log(`res2: ${res2}`);   // "Invalid number"
+
+function makeName1(firstName: string, lastName: string, middleName?: string): string
+{
+    if (middleName)
+    {
+        return `${firstName} ${middleName} ${lastName}`;
+    }
+    return `${firstName} ${lastName}`;
+}
+
+const fullName1 = makeName1("John", "Doe", "M.");   // "John M. Doe"
+console.log(`fullName1: ${fullName1}`);             // "John M. Doe"
+const fullName2 = makeName1("Jane", "Doe");         // "Jane  Doe"
+console.log(`fullName2: ${fullName2}`);             // "Jane  Doe"
+
+function makeName2(firstName: string, lastName: string, middleName: string = "J."): string
+{
+    return `${firstName} ${middleName} ${lastName}`;
+}
+const fullName3 = makeName2("John", "Doe", "M.");   // "John M. Doe"
+console.log(`fullName3: ${fullName3}`);             // "John M. Doe"
+const fullName4 = makeName2("Homer", "Simpson");    // "Jane M. Doe"
+console.log(`fullName4: ${fullName4}`);             // "Jane M. Doe"
+
+function callFunc
+    (
+        func: (f: string, l: string, m?: string) => string,
+        param1: string,
+        param2: string
+    )
+{
+    return func(param1, param2);
+}
+callFunc(makeName1, "John", "Doe"); // "John Doe"
+
+function callFunction(fn: (x: number, y: number) => number, a: number, b: number): number
+{
+    return fn(a, b);
+}
+const sum = (x: number, y: number): number => x + y;
+const result = callFunction(sum, 5, 10); // 15
+
+/* ************************************************************************** */
+
+function multiply(x: number, y: number): number
+{
+    return x * y;
+}
+
+function divide(x: number, y: number): number
+{
+    return x / y;
+}
+
+// Función que aplica un conjunto de funciones binarias (de dos argumentos) a un conjunto de pares de valores,
+// devolviendo un arreglo con los resultados. Esta es la parte más representativa del enfoque funcional:
+function applyFunc(
+    funcs: ((a: number, b: number) => number)[],    // Un array de funciones que toman dos números y devuelven un número
+    values: [number, number][]                      // Un array de pares de números (tuplas de dos elementos)
+): number[]
+{
+    const results: number[] = [];                   // Aquí se irán guardando los resultados
+
+    for (let i = 0; i < funcs.length; i++)          // Se itera sobre las funciones
+    {
+        const args = values[i];                     // Se toma el par de valores correspondiente
+        const result = funcs[i](args[0], args[1]);  // Se invoca la función con ese par
+        results.push(result);                       // Se guarda el resultado
+    }
+
+    return results;                                 // Se devuelve el array de resultados
+}
+
+console.log(applyFunc(
+    [multiply, divide],
+    [
+        [10, 8], // 80
+        [6, 4]   // 1.5
+    ]
+)); // [80, 1.5]
+
+////////////////////// 01:40:22 | 3.2 - Advanced Function Types //////////////////////
