@@ -145,8 +145,8 @@ function callFunction(fn: (x: number, y: number) => number, a: number, b: number
 {
     return fn(a, b);
 }
-const sum = (x: number, y: number): number => x + y;
-const result = callFunction(sum, 5, 10); // 15
+const sumResult = (x: number, y: number): number => x + y;
+const result = callFunction(sumResult, 5, 10); // 15
 
 /* ************************************************************************** */
 
@@ -187,4 +187,115 @@ console.log(applyFunc(
     ]
 )); // [80, 1.5]
 
-////////////////////// 01:40:22 | 3.2 - Advanced Function Types //////////////////////
+/////////////////// 01:40:22 | 3.2 - Advanced Function Types ///////////////////
+
+// Rest parameters allow a function to accept an indefinite number of arguments as an array.
+function sum(...values: number[]): number
+{
+    return values.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+}
+console.log(sum(1, 2, 3, 4, 5)); // 15
+
+// Overloaded functions allow you to define multiple signatures for a function.
+function getItemLength(item: string): number;
+function getItemLength(items: string[]): string;
+function getItemLength(itemOrItems: unknown): unknown
+{
+    if (typeof itemOrItems === "string")
+    {
+        return itemOrItems.length;
+    }
+    else if (Array.isArray(itemOrItems))
+    {
+        //return itemOrItems.reduce((acc, item) => acc + item.length, 0);
+        return "You passed an array of strings";
+    }
+    return 0; // Default case if neither string nor array
+}
+console.log(getItemLength("Hello")); // 5
+console.log(getItemLength(["Hello", "World"])); // 10
+
+/////////////////////////// 01:48:05 | 3.3 - Interfaces // /////////////////////
+
+interface PersonX
+{
+    name: string;
+    age: number;
+    height?: string; // Optional property
+    hello: () => string; // Method
+}
+
+const person: PersonX = {
+    name: "Alice",
+    age: 30,
+    hello: () => `Hello, my name is ${person.name} and I am ${person.age} years old.`,
+};
+
+console.log(person.hello()); // "Hello, my name is Alice and I am 30 years old."
+
+interface Employee extends PersonX
+{
+    employeeId: number;
+}
+
+const worker: Employee =
+{
+    name: "Bob",
+    age: 25,
+    employeeId: 12345,
+    hello: () => `Hello, my name is ${worker.name}, I am ${worker.age} years old, and my employee ID is ${worker.employeeId}.`,
+};
+
+console.log(worker.hello()); // "Hello, my name is Bob, I am 25 years old, and my employee ID is 12345."
+
+interface Manager extends Employee, PersonX
+{
+    employees: Employee[];
+}
+
+const manager: Manager = {
+    name: "Charlie",
+    age: 40,
+    employeeId: 67890,
+    employees: [worker],
+    hello: () => `Hello, my name is ${manager.name}, I am ${manager.age} years old, and I manage ${manager.employees.length} employees.`,
+};
+
+function getPerson(person: PersonX): PersonX
+{
+    return {
+        name: "Tim",
+        age: 23,
+        hello: () => `Hello, my name is ${person.name} and I am ${person.age} years old.`,
+    };
+}
+
+// Example of a class implementing an interface
+class Person
+{
+    protected name: string;
+
+    constructor(x: string)
+    {
+        this.name = x;
+        this.greet();
+    }
+
+    private greet()
+    {
+        console.log(`Hello, my name is ${this.name}`);
+    }
+
+    getName(): string
+    {
+        if (this.name.length < 2) return "Name is too short";
+        return this.name;
+    }
+
+    setName(newName: string): void
+    {
+        this.name = newName;
+    }
+}
+
+const p1 = new Person("Alice");
