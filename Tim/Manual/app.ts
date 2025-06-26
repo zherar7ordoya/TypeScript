@@ -93,7 +93,7 @@ console.log(`el3: ${el3}`); // Alice
 
 console.log("Basic Function Types");
 
-function add(x: number, y: number): number | string
+function addTwoNumbers(x: number, y: number): number | string
 {
     if (x == 0)
     {
@@ -102,9 +102,9 @@ function add(x: number, y: number): number | string
     return x + y;
 }
 
-const res1 = add(5, 10);        // 15
+const res1 = addTwoNumbers(5, 10);        // 15
 console.log(`res1: ${res1}`);   // 15
-const res2 = add(0, 10);        // "Invalid number"
+const res2 = addTwoNumbers(0, 10);        // "Invalid number"
 console.log(`res2: ${res2}`);   // "Invalid number"
 
 function makeName1(firstName: string, lastName: string, middleName?: string): string
@@ -380,7 +380,7 @@ class DataStore<T>
 {
     private items: T[] = [];
 
-    addItem(item: T): void
+    addTwoNumbersItem(item: T): void
     {
         this.items.push(item);
     }
@@ -479,15 +479,15 @@ interface Organization
 type ContactType = Individual | Organization;
 type CompConcat = Individual & Organization;
 
-function addContact(contact: ContactType): void
+function addTwoNumbersContact(contact: ContactType): void
 {
     if ("birthdate" in contact)
     {
-        console.log(`Adding individual contact: ${contact.name}, born on ${contact.birthdate}`);
+        console.log(`addTwoNumbersing individual contact: ${contact.name}, born on ${contact.birthdate}`);
     }
     else
     {
-        console.log(`Adding organization contact: ${contact.companyName}, phone: ${contact.companyPhone}`);
+        console.log(`addTwoNumbersing organization contact: ${contact.companyName}, phone: ${contact.companyPhone}`);
     }
 }
 
@@ -591,14 +591,14 @@ interface PageInfo
     title: string;
 }
 
-const pages: Record<string, PageInfo> = 
+const pages: Record<string, PageInfo> =
 {
     home: { title: "Home Page" },
     about: { title: "About Page" },
     contact: { title: "Contact Page" }
 };
 
-const pageNumbers: Record<number, PageInfo> = 
+const pageNumbers: Record<number, PageInfo> =
 {
     0: { title: "Home Page" },
     1: { title: "About Page" },
@@ -608,7 +608,7 @@ const pageNumbers: Record<number, PageInfo> =
 /*** Pick: creates a type by picking specific properties from another type. ***/
 type TodoPreview = Pick<Todo, "title" | "completed">;
 
-const todoPreview: TodoPreview = 
+const todoPreview: TodoPreview =
 {
     title: "Learn TypeScript",
     completed: false
@@ -623,3 +623,38 @@ const todoWithoutId: TodoWithoutId =
     completed: false
 };
 
+// ////////////////////////////////////////////////////////////////////////// //
+
+import Anything, { add, sub } from "./util.js";
+
+console.log(`add(5, 10): ${add(5, 10)}`); // 15
+console.log(`Anything: ${Anything()}`); // "This is a default export function"
+
+// ////////////////////////////////////////////////////////////////////////// //
+
+import { introduce as complexFunction } from "./math/complex/util.js";
+import { introduce as simpleFunction } from "./math/simple/util.js";
+
+// ////////////////////////////////////////////////////////////////////////// //
+
+export namespace Tools
+{
+    export class MathUtils
+    {
+    }
+
+    export function add(x: number, y: number): number
+    {
+        return x + y;
+    }
+
+    export const PI = 3.14;
+
+    export type NewType =
+    {
+        name: string;
+    };
+}
+
+const calculated = Tools.add(5, 10);
+console.log(`Tools.add(5, 10): ${calculated}`); // 15
