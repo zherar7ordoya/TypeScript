@@ -555,3 +555,71 @@ function logMessage(log: Log): void
             throw new Error(`Unhandled log type: ${_exhaustiveCheck}`);
     }
 }
+
+
+//////////////////////// 02:53:42 | 5.5 - Utility Types ////////////////////////
+
+interface Todo
+{
+    id: number;
+    completed: boolean;
+
+    title: string;
+    description: string;
+}
+
+type PartialTodo = Partial<Todo>;
+
+/*** Partial makes all properties optional, allowing you to update only specific fields. ***/
+const updateTodo = (todo: Partial<Todo>) =>
+{
+    todo.title = todo.title || "Default Title"; // Optional chaining
+};
+
+/*** Readonly: makes all properties read-only. ***/
+const onlyReadTodo: Readonly<Todo> = {
+    title: "Read Only Todo",
+    description: "This todo cannot be modified",
+    id: 1,
+    completed: false
+};
+// onlyReadTodo.title = "New Title"; // Error: Cannot assign to 'title' because it is a read-only property
+
+/*** Record: creates an object type with specific keys and values. ***/
+interface PageInfo
+{
+    title: string;
+}
+
+const pages: Record<string, PageInfo> = 
+{
+    home: { title: "Home Page" },
+    about: { title: "About Page" },
+    contact: { title: "Contact Page" }
+};
+
+const pageNumbers: Record<number, PageInfo> = 
+{
+    0: { title: "Home Page" },
+    1: { title: "About Page" },
+    2: { title: "Contact Page" }
+};
+
+/*** Pick: creates a type by picking specific properties from another type. ***/
+type TodoPreview = Pick<Todo, "title" | "completed">;
+
+const todoPreview: TodoPreview = 
+{
+    title: "Learn TypeScript",
+    completed: false
+};
+
+/*** Omit: creates a type by omitting specific properties from another type. ***/
+type TodoWithoutId = Omit<Todo, "id">;
+const todoWithoutId: TodoWithoutId =
+{
+    title: "Learn TypeScript",
+    description: "Understand utility types",
+    completed: false
+};
+
