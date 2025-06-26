@@ -299,3 +299,259 @@ class Person
 }
 
 const p1 = new Person("Alice");
+
+
+//////////////////// 02:10:30 | 4.2 - Classes & Interfaces //////////////////////
+
+interface Animal
+{
+    speak(): void;
+}
+
+class Dog implements Animal
+{
+    private name: string;
+    private color: string;
+    static InstanceCount: number = 0;
+
+    constructor(name: string, color: string)
+    {
+        this.name = name;
+        this.color = color; // Using "this" to refer to the instance property
+        Dog.InstanceCount++; // Using the class name to access the static property
+    }
+
+    speak(): void
+    {
+        console.log(`I am ${this.name} and I am ${this.color}.`);
+    }
+
+    test(): void
+    {
+        console.log(`This is a test method for ${this.name}.`);
+    }
+
+    static decreaseInstanceCount(): void
+    {
+        if (this.InstanceCount > 0)
+        {
+            this.InstanceCount--;
+        }
+    }
+}
+
+const dog: Animal = new Dog("Buddy", "brown");
+dog.speak(); // "I am Buddy and I am brown."
+//dog.test(); // "This is a test method for Buddy."
+
+class Cat implements Animal
+{
+    speak(): void
+    {
+        console.log("Meow!");
+    }
+}
+
+const cat = new Cat();
+const animal: Animal = cat;
+animal.speak(); // "Meow!"
+
+const animals: Animal[] = [dog, cat];
+animals.forEach(animal => animal.speak()); // "I am Buddy and I am brown." "Meow!"
+
+function makeAnimalSpeak(animal: Animal): void
+{
+    animal.speak();
+}
+makeAnimalSpeak(dog); // "I am Buddy and I am brown."
+makeAnimalSpeak(cat); // "Meow!"
+
+///////////////// 02:21:15 | 4.3 - Static Attributes & Methods /////////////////
+
+const dog1 = new Dog("Rex", "black");
+const dog2 = new Dog("Max", "white");
+console.log(`Total Dog instances: ${Dog.InstanceCount}`); // 3 (Rex, Max, Buddy)
+Dog.decreaseInstanceCount();
+console.log(`Total Dog instances after decrease: ${Dog.InstanceCount}`); // 2 (Rex, Max)
+
+////////////////////////// 02:25:37 | 4.4 - Generics ////////////////////////////
+
+class DataStore<T>
+{
+    private items: T[] = [];
+
+    addItem(item: T): void
+    {
+        this.items.push(item);
+    }
+
+    getItem(index: number): T 
+    {
+        return this.items[index];
+    }
+
+    removeItem(index: number): void
+    {
+        this.items.splice(index, 1);
+    }
+
+    getAllItems(): T[]
+    {
+        return this.items;
+    }
+}
+
+/* ***********************  */
+
+
+function getValue<K, V>(key: K, value1: V, value2: V): V
+{
+    if (key)
+    {
+        return value1;
+    }
+    return value2;
+}
+
+const n1: number = 10;
+const n2: number = 20;
+console.log(getValue(true, n1, n2)); // 10
+
+//////////////////////// 02:32:26 | 5.1 - Type Aliases /////////////////////////
+
+// Custom type for non object based types
+function compareCoordinates1
+    (
+        coord1: [number, number],
+        coord2: [number, number]
+
+    ): [number, number]
+{
+    return [coord1[0] - coord2[0], coord1[1] - coord2[1]];
+}
+
+type Coordinate = [number, number];
+
+function compareCoordinates2
+    (
+        coord1: Coordinate,
+        coord2: Coordinate
+    ): Coordinate
+{
+    return [coord1[0] - coord2[0], coord1[1] - coord2[1]];
+}
+
+//////////////// 02:36:48 | 5.2 - Union & Intersection Types ////////////////////
+
+interface BussinessPartner
+{
+    name: string;
+}
+
+interface ContactDetails
+{
+    email: string;
+    phone: string;
+}
+
+// Intersection type combines multiple types into one.
+type BusinnessContact = BussinessPartner & ContactDetails;
+
+const contact: BusinnessContact = {
+    name: "John Doe",
+    email: "john.doe@example.com",
+    phone: "123-456-7890"
+};
+
+// Union type allows a variable to be one of several types.
+interface Individual
+{
+    name: string;
+    birthdate: Date;
+}
+
+interface Organization
+{
+    companyName: string;
+    companyPhone: string;
+}
+
+type ContactType = Individual | Organization;
+type CompConcat = Individual & Organization;
+
+function addContact(contact: ContactType): void
+{
+    if ("birthdate" in contact)
+    {
+        console.log(`Adding individual contact: ${contact.name}, born on ${contact.birthdate}`);
+    }
+    else
+    {
+        console.log(`Adding organization contact: ${contact.companyName}, phone: ${contact.companyPhone}`);
+    }
+}
+
+// Type guard to check if contact is an organization
+
+function getName(contact: ContactType): string
+{
+    if ("birthdate" in contact)
+    {
+        return contact.name;
+    }
+    else
+    {
+        //return `Contact is an organization: ${contact.companyName}`;
+        return isOrganization(contact)
+            ? contact.companyName
+            : "Unknown Organization";
+    }
+}
+
+function isOrganization(contact: ContactType): contact is Organization
+{
+    return (contact as Organization).companyName !== undefined;
+}
+
+//////////////////////// 02:49:13 | 5.4 - Discriminated Unions ////////////////
+
+// Tag Type (performing type narrowing): discriminated union
+interface Warning
+{
+    type: "warning";
+    msg: string;
+}
+
+interface Info
+{
+    type: "info";
+    text: string;
+}
+
+interface Success
+{
+    type: "success";
+    message: string;
+}
+
+type Log = Warning | Info | Success;
+
+
+function logMessage(log: Log): void
+{
+    switch (log.type)
+    {
+        case "warning":
+            console.log(`Warning: ${log.msg}`);
+            break;
+        case "info":
+            console.log(`Info: ${log.text}`);
+            break;
+        case "success":
+            console.log(`Success: ${log.message}`);
+            break;
+        default:
+            const _exhaustiveCheck: never = log; // Ensures all cases are handled
+            throw new Error(`Unhandled log type: ${_exhaustiveCheck}`);
+    }
+}
