@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Documents\\TypeScript\\Xtras\\Console\\TerminalGui\\TerminalGui.csproj": {}
+    "D:\\Documents\\TypeScript\\Xtras\\Console\\TerminalGui\\TerminalGui.csproj": {}
   },
   "projects": {
-    "C:\\Documents\\TypeScript\\Xtras\\Console\\TerminalGui\\TerminalGui.csproj": {
+    "D:\\Documents\\TypeScript\\Xtras\\Console\\TerminalGui\\TerminalGui.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Documents\\TypeScript\\Xtras\\Console\\TerminalGui\\TerminalGui.csproj",
+        "projectUniqueName": "D:\\Documents\\TypeScript\\Xtras\\Console\\TerminalGui\\TerminalGui.csproj",
         "projectName": "TerminalGui",
-        "projectPath": "C:\\Documents\\TypeScript\\Xtras\\Console\\TerminalGui\\TerminalGui.csproj",
-        "packagesPath": "C:\\Users\\gtordoya\\.nuget\\packages\\",
-        "outputPath": "C:\\Documents\\TypeScript\\Xtras\\Console\\TerminalGui\\obj\\",
+        "projectPath": "D:\\Documents\\TypeScript\\Xtras\\Console\\TerminalGui\\TerminalGui.csproj",
+        "packagesPath": "C:\\Users\\zherar7ordoya\\.nuget\\packages\\",
+        "outputPath": "D:\\Documents\\TypeScript\\Xtras\\Console\\TerminalGui\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "D:\\Microsoft Visual Studio\\2022\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\gtordoya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\zherar7ordoya\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -71,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

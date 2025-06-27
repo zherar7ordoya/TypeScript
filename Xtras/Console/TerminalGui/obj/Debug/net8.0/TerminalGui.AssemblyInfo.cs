@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TerminalGui")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+63845886200105722c739c301b872c94db2cc5e8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e8bf3f5f9387790c9593495cf7b4ae57b22c12bb")]
 [assembly: System.Reflection.AssemblyProductAttribute("TerminalGui")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TerminalGui")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
