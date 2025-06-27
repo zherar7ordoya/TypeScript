@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Máquina de escribir multilinea</title>
+<style>
+  body {
+    font-family: monospace, system-ui;
+    background-color: #f2f2f2;
+    color: #333;
+    padding: 40px;
+  }
+  .typewriter {
+    border-right: 2px solid #555;
+    display: inline-block;
+    white-space: pre-wrap; /* mantiene saltos de línea */
+    overflow-wrap: break-word;
+  }
+  .typewriter span {
+    opacity: 0;
+    animation: fadeIn 0.05s forwards;
+  }
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="typewriter" id="typewriter">
+Es un periodo de guerras civiles en la galaxia. Una valiente alianza de luchadores por la libertad clandestinos
+ha desafiado la tiranía y opresión del impresionante IMPERIO GALÁCTICO.
+
+Atacando desde una fortaleza oculta entre los mil millones de estrellas de la galaxia, las naves espaciales
+rebeldes han logrado su primera victoria en una batalla contra la poderosa Flota Estelar Imperial. El IMPERIO
+teme que otra derrota pueda llevar a mil sistemas solares más a unirse a la rebelión, y el control Imperial
+sobre la galaxia se perdería para siempre.
+
+Para aplastar la rebelión de una vez por todas, el IMPERIO está construyendo una siniestra nueva estación de
+combate. Lo suficientemente poderosa como para destruir un planeta entero, su finalización significa la
+perdición segura para los campeones de la libertad.
+</div>
+
+<script>
+  const typewriter = document.getElementById('typewriter');
+  const text = typewriter.textContent;
+  typewriter.textContent = ''; // Limpiamos el texto para reescribirlo con spans
+
+  // Recorremos cada caracter y lo envolvemos en un span con animación delay creciente
+  for (let i = 0; i < text.length; i++) {
+    const span = document.createElement('span');
+    span.textContent = text[i];
+    span.style.animationDelay = `${i * 50}ms`; // 50ms por carácter, ajustá como quieras
+    typewriter.appendChild(span);
+  }
+</script>
+
+</body>
+
+</html>
