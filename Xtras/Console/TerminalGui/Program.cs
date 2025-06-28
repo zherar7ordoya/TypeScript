@@ -1,6 +1,4 @@
-﻿
-
-using Terminal.Gui;
+﻿using Terminal.Gui;
 
 namespace TerminalGui;
 
@@ -29,6 +27,7 @@ public class Program
     {
         Application.Init();
         var top = Application.Top;
+        Cargar();
 
         var ventanaPrincipal = new Window("Agenda")
         {
@@ -71,8 +70,7 @@ public class Program
         ]);
 
         top.Add(barraDeEstado);
-
-
+        MostrarPersona();
         Application.Run();
     }
 
@@ -83,6 +81,7 @@ public class Program
         if (respuesta == 0)
         {
             personas.RemoveAt(posicionActual);
+            Guardar();
             if (posicionActual > personas.Count - 1)
             {
                 posicionActual = personas.Count - 1;
@@ -124,7 +123,7 @@ public class Program
             } while (linea != null);
 
             fichero.Close();
-
+            posicionActual = personas.Count - 1;
         }
     }
     
@@ -215,6 +214,7 @@ public class Program
 
 
             personas.Add(new Persona(casillaNombre.Text.ToString(), casillaDireccion.Text.ToString()));
+            Guardar();
             posicionActual = personas.Count - 1;
 
             MostrarPersona();
